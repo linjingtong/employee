@@ -34,6 +34,9 @@
       admin = #{admin}
     where id = #{id}
   </update>
+  <update id="updateStateToLeave">
+    update `employee` set state = 1 where id = #{id}
+  </update>
   <select id="selectByPrimaryKey" resultMap="BaseResultMap">
     select id, username, realName, password, tel, email, inputTime, state, admin
     from `employee`
@@ -43,4 +46,17 @@
     select id, username, realName, password, tel, email, inputTime, state, admin
     from `employee`
   </select>
+  <select id="queryCount" resultType="java.lang.Integer">
+    select count(id) from `employee`
+  </select>
+  <select id="queryData" resultMap="BaseResultMap">
+    select id, username, realName, password, tel, email, inputTime, state, admin
+    from `employee`
+    <include refid="base_where"/>
+    limit #{start},#{rows}
+  </select>
+
+  <sql id="base_where">
+
+  </sql>
 </mapper>
