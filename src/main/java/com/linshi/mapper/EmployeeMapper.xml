@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.linshi.mapper.EmployeeMapper" >
+  <resultMap id="BaseResultMap" type="com.linshi.domain.Employee" >
+    <id column="id" property="id" />
+    <result column="username" property="username" />
+    <result column="realName" property="realname" />
+    <result column="password" property="password" />
+    <result column="tel" property="tel" />
+    <result column="email" property="email" />
+    <result column="inputTime" property="inputTime" />
+    <result column="state" property="state" />
+    <result column="admin" property="admin" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey">
+    delete from `employee`
+    where id = #{id}
+  </delete>
+  <insert id="insert" useGeneratedKeys="true" keyProperty="id" >
+    insert into `employee` (username, realName, password, tel, email, inputTime, state, 
+      admin)
+    values (#{username}, #{realname}, #{password}, #{tel}, #{email}, #{inputTime}, #{state}, 
+      #{admin})
+  </insert>
+  <update id="updateByPrimaryKey" >
+    update `employee`
+    set username = #{username},
+      realName = #{realname},
+      password = #{password},
+      tel = #{tel},
+      email = #{email},
+      inputTime = #{inputTime},
+      state = #{state},
+      admin = #{admin}
+    where id = #{id}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap">
+    select id, username, realName, password, tel, email, inputTime, state, admin
+    from `employee`
+    where id = #{id}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, username, realName, password, tel, email, inputTime, state, admin
+    from `employee`
+  </select>
+</mapper>
